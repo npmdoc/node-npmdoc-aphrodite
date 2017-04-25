@@ -686,7 +686,23 @@ return `
     <li>description and source-code<pre class="apidocCodePre">function clearBufferAndResumeStyleInjection() {
     (0, _inject.reset)();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+describe('StyleSheetTestUtils.suppressStyleInjection', () =&gt; {
+beforeEach(() =&gt; {
+    StyleSheetTestUtils.suppressStyleInjection();
+});
+
+afterEach(() =&gt; {
+    StyleSheetTestUtils.<span class="apidocCodeKeywordSpan">clearBufferAndResumeStyleInjection</span>();
+});
+
+it('allows css to be called without requiring a DOM', (done) =&gt; {
+    const sheet = StyleSheet.create({
+        red: {
+            color: 'red',
+        },
+...</pre></li>
     </ul>
 
 
@@ -702,7 +718,23 @@ return `
     (0, _inject.reset)();
     (0, _inject.startBuffering)();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    assert.include(ret.css.content, 'font-family:"My Font"');
+    assert.include(ret.css.content, 'font-family:"My Font","My Other Font"');
+});
+});
+
+describe('StyleSheetTestUtils.suppressStyleInjection', () =&gt; {
+beforeEach(() =&gt; {
+    StyleSheetTestUtils.<span class="apidocCodeKeywordSpan">suppressStyleInjection</span>();
+});
+
+afterEach(() =&gt; {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+});
+
+it('allows css to be called without requiring a DOM', (done) =&gt; {
+...</pre></li>
     </ul>
 
 
@@ -1107,21 +1139,21 @@ return `
     }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-b /* : ObjectMap | Map&lt;string,any&gt; */
-) /* : OrderedElements | any */{
-// TODO(jlfwong): Handle malformed input where a and b are not the same
-// type.
+	b /* : ObjectMap | Map&lt;string,any&gt; */
+	) /* : OrderedElements | any */{
+	    // TODO(jlfwong): Handle malformed input where a and b are not the same
+	    // type.
 
-if (!isPlainObject(a) || !isPlainObject(b)) {
-    if (isPlainObject(b)) {
-        return _orderedElements2['default'].<span class="apidocCodeKeywordSpan">from</span>(b);
-    } else {
-        return b;
-    }
-}
+	    if (!isPlainObject(a) || !isPlainObject(b)) {
+	        if (isPlainObject(b)) {
+	            return _orderedElements2['default'].<span class="apidocCodeKeywordSpan">from</span>(b);
+	        } else {
+	            return b;
+	        }
+	    }
 
-var ret = _orderedElements2['default'].from(a);
-var right = _orderedElements2['default'].from(b);
+	    var ret = _orderedElements2['default'].from(a);
+	    var right = _orderedElements2['default'].from(b);
 ...</pre></li>
     </ul>
 
@@ -1142,19 +1174,21 @@ var right = _orderedElements2['default'].from(b);
     return ret;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-        // if the elements are deeply modified it will affect all copies.
-        return new OrderedElements(_extends({}, obj.elements), obj.keyOrder.slice());
-    } else if (
-    // For some reason, flow complains about a plain
-    // `typeof Map !== "undefined"` check. Casting `Map` to `any` solves
-    // the problem.
-    typeof /*::(*/Map /*: any)*/ !== "undefined" &amp;&amp; obj instanceof Map) {
-        return OrderedElements.<span class="apidocCodeKeywordSpan">fromMap</span>(obj);
-    } else {
-        return OrderedElements.fromObject(obj);
-    }
-};
-module.exports = exports["default"];
+	        // if the elements are deeply modified it will affect all copies.
+	        return new OrderedElements(_extends({}, obj.elements), obj.keyOrder.slice());
+	    } else if (
+	    // For some reason, flow complains about a plain
+	    // `typeof Map !== "undefined"` check. Casting `Map` to `any` solves
+	    // the problem.
+	    typeof /*::(*/Map /*: any)*/ !== "undefined" &amp;&amp; obj instanceof Map) {
+	        return OrderedElements.<span class="apidocCodeKeywordSpan">fromMap</span>(obj);
+	    } else {
+	        return OrderedElements.fromObject(obj);
+	    }
+	};
+	module.exports = exports["default"];
+
+/***/ },
 ...</pre></li>
     </ul>
 
@@ -1171,17 +1205,21 @@ module.exports = exports["default"];
     return new OrderedElements(obj, Object.keys(obj));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    } else if (
-    // For some reason, flow complains about a plain
-    // `typeof Map !== "undefined"` check. Casting `Map` to `any` solves
-    // the problem.
-    typeof /*::(*/Map /*: any)*/ !== "undefined" &amp;&amp; obj instanceof Map) {
-        return OrderedElements.fromMap(obj);
-    } else {
-        return OrderedElements.<span class="apidocCodeKeywordSpan">fromObject</span>(obj);
-    }
-};
-module.exports = exports["default"];
+	    } else if (
+	    // For some reason, flow complains about a plain
+	    // `typeof Map !== "undefined"` check. Casting `Map` to `any` solves
+	    // the problem.
+	    typeof /*::(*/Map /*: any)*/ !== "undefined" &amp;&amp; obj instanceof Map) {
+	        return OrderedElements.fromMap(obj);
+	    } else {
+	        return OrderedElements.<span class="apidocCodeKeywordSpan">fromObject</span>(obj);
+	    }
+	};
+	module.exports = exports["default"];
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
 ...</pre></li>
     </ul>
 
